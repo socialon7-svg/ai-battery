@@ -1,0 +1,89 @@
+{
+  "name": "ai-battery",
+  "productName": "AI Battery",
+  "version": "1.1.0",
+  "description": "Claude Code · ChatGPT(Codex) · Antigravity 사용량을 배터리처럼 보여주고, 작업이 끝나면 알려주는 작은 데스크톱 앱",
+  "main": "src/main.js",
+  "private": true,
+  "author": "local",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "electron .",
+    "test": "node test/run.js",
+    "test:unit": "node test/run.js --unit",
+    "probe": "node test/providers.probe.js",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac",
+    "icon": "node scripts/make-icon.js",
+    "predist": "npm run icon",
+    "predist:win": "npm run icon",
+    "predist:mac": "npm run icon"
+  },
+  "devDependencies": {
+    "electron": "^45.0.0",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "dev.local.ai-battery",
+    "productName": "AI Battery",
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "artifactName": "AI-Battery-${version}-${os}-${arch}.${ext}",
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": false,
+      "createStartMenuShortcut": true,
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false,
+      "artifactName": "AI-Battery-Setup-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "AI-Battery-${version}-portable.${ext}"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "category": "public.app-category.developer-tools",
+      "identity": null,
+      "icon": "build/icon.png",
+      "extendInfo": {
+        "LSUIElement": 1
+      },
+      "artifactName": "AI-Battery-${version}-mac-${arch}.${ext}"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+<title>AI Battery</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app" class="app">
+  <main id="rows" class="rows"></main>
+
+  <section id="settings" class="settings" hidden>
+    <h4>연동</h4>
+    <div id="links"></div>
+    <div class="srow"><span>자동 연결<span class="sub">시작할 때 Claude Code 훅 · Codex 알림을 설정</span></span><input type="checkbox" id="s-autohook" class="switch"></div>
+    <div class="srow"><span>자동 로그인 안내<span class="sub">CLI는 있는데 로그인이 없으면 로그인 창을 한 번 엶</span></span><input type="checkbox" id="s-autologin" class="switch"></div>
+
+    <h4>알림</h4>
+    <div class="srow"><span>소리</span><input type="checkbox" id="s-sound" class="switch"></div>
+    <div class="srow"><span>진동<span class="sub">게임패드 · SteelSeries 진동 마우스</span></span><input type="checkbox" id="s-vibrate" class="switch"></div>
+    <div class="srow"><span>알릴 도구</span><div class="chips" id="alert-chips"></div></div>
+
+    <h4>표시</h4>
+    <div class="srow"><span>항상 위에 표시</span><input type="checkbox" id="s-top" class="switch"></div>
+    <div class="srow"><span>로그인 시 자동 시작</span><input type="checkbox" id="s-openatlogin" class="switch"></div>
+    <div class="srow"><span>사용량 갱신</span>
+      <select id="s-poll"><option value="30">30초</option><option value="60">1분</option><option value="120">2분</option><option value="300">5분</option></select></div>
+    <div class="srow"><span>Antigravity 완료 판정<span class="sub">파일 변경이 멈춘 뒤</span></span>
+      <select id="s-quiet"><option value="10">10초</option><option value="20">20초</option><option value="30">30초</option><option value="60">60초</option></select></div>
+
+    <div class="srow actions">
+      <button id="btn-test" class="btn">알림 테스트</button>
+      <button id="btn-pos" class="btn">우측 상단으로</button>
+      <button id="btn-logs" class="btn" title="문제가 생겼을 때 로그 파일을 보냅니다">로그</button>
+      <button id="btn-close-settings" class="btn">닫기</button>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span id="foot-left"></span>
+    <span class="r">
+      <button id="btn-refresh" class="ib" title="새로고침">↻</button>
+      <button id="btn-settings" class="ib" title="설정 · 연동">⚙</button>
+      <button id="btn-hide" class="ib" title="숨기기 (트레이 아이콘으로 다시 열기)">✕</button>
+    </span>
+  </footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
